@@ -1,0 +1,25 @@
+{
+  "name": "inventario-de-prestamos",
+  "version": "0.1.0",
+  "authors": [
+    "Victor Gonzalez <aficiomaquinas@users.noreply.github.com>"
+  ],
+  "description": "Send lending reminders",
+  "main": "prestamos.sh",
+  "keywords": [
+    "amazon",
+    "prime",
+    "casperjs"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "config.json"
+  ],
+  "dependencies": {
+  }
+}

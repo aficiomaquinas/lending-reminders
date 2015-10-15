@@ -1,0 +1,30 @@
+{
+  "name": "inventario-de-prestamos",
+  "version": "4.2.1",
+  "description": "Send lending reminders",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aficiomaquinas/inventario-de-prestamos.git"
+  },
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "engines": {
+    "node": "0.10.40"
+  },
+  "author": "Victor Gonzalez <aficiomaquinas@users.noreply.github.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "coffee-script": "^1.10.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.13.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-test": "^0.12.7"
+  },
+  "dependencies": {
+    "blockspring": "0.0.6",
+    "dotenv": "^1.2.0"
+  }
+}
