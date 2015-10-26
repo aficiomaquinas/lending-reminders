@@ -1,4 +1,8 @@
-assert = require('chai').assert
+# assert = require('chai').assert
+chai = require 'chai'
+chaiAsPromised = require 'chai-as-promised'
+assert = chai.assert
+chai.use(chaiAsPromised)
 
 App = require "../src/main"
 a = new App()
@@ -9,28 +13,33 @@ describe 'Environment variables', ->
       assert.isDefined a.api
   describe 'Google sheets items url', ->
     it 'should be defined', ->
-      assert.isDefined a.gsheet_items
+      assert.isDefined a.gsheet_items_url
   describe 'Google sheets persons url', ->
     it 'should be defined', ->
-      assert.isDefined a.gsheet_persons
+      assert.isDefined a.gsheet_persons_url
 
-describe 'Gsheets json', ->
-  describe '#jsonItems', ->
-    it 'should get a valid json object', (done) ->
-      a.getItemsJson ->
-        assert.isObject a.jsonItemsCache
-        assert.isArray a.jsonItemsCache.data
-        done()
-  describe '#jsonPersons', ->
-    it 'should get a valid json object', (done) ->
-      a.getPersonsJson ->
-        assert.isObject a.jsonPersonsCache
-        assert.isArray a.jsonPersonsCache.data
-        done()
-  describe '#jsonItems per person', ->
-    it 'should get a valid json object', (done) ->
-      testPerson = a.jsonPersonsCache.data[0].Nombre
-      a.getItemsPerPersonJson testPerson, ->
-        assert.isObject a.jsonPersonsCache
-        assert.isArray a.jsonPersonsCache.data
-        done()
+describe 'get Gsheets json promise v2', ->
+  it 'should be fulfilled', ->
+    return assert.isFulfilled a.getGSheetJsonPromise2(a.gsheet_persons_id, 0, 'SELECT A,B,C,D')
+
+# describe 'Gsheets json', ->
+#   describe '#jsonPersonsPromise', ->
+#     it 'should get a valid json object', ->
+#       return assert.eventually.isObject a.getPersonsJsonPromise()
+#       return assert.eventually.isArray a.getPersonsJsonPromise().data
+#   describe '#jsonItems per person promise', ->
+#     it 'should get a valid json object', ->
+#       a.getPersonsJsonPromise().then (result) ->
+#         testPerson = result.data[0].Nombre
+#         return assert.eventually.isObject a.getItemsPerPersonJsonPromise(testPerson)
+#         return assert.eventually.isArray a.getItemsPerPersonJsonPromise(testPerson).data
+
+# describe 'makeListOfEmails', ->
+#   @timeout(5000)
+#   it 'should get a valid array', ->
+#     return assert.eventually.isArray a.getEmailContent()
+
+# describe 'Compose email', ->
+#   @timeout(2000)
+#   it 'should fulfill', ->
+#     return assert.isFulfilled a.sendEachEmail()

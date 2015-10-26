@@ -33,9 +33,9 @@ grunt local
 Todo
 --
 
-* Make mail text
-* make sendgrid template
-* Make email string per person
+* Use native sheets url instead of blockspring
+* Handlebars?
+* make sendgrid template?
 * Send each email
 * Heroku scheduler and remote usage
 
@@ -46,3 +46,4 @@ Wishlist
 * autoconfigure sendgrid template?
 * Config file for spreadsheet parameters and columns
 * Automated Travis testing
+* Articles with "To" type

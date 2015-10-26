@@ -45,7 +45,7 @@ module.exports = (grunt) ->
 	@registerTask 'default', [
 		'coffeelint'
 		'coffee'
-		'mochaTest'
+		# 'mochaTest'
 	]
 
 	#######################################

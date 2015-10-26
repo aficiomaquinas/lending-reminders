@@ -1,6 +1,12 @@
-var App, a, assert;
+var App, a, assert, chai, chaiAsPromised;
 
-assert = require('chai').assert;
+chai = require('chai');
+
+chaiAsPromised = require('chai-as-promised');
+
+assert = chai.assert;
+
+chai.use(chaiAsPromised);
 
 App = require("../src/main");
 
@@ -14,44 +20,18 @@ describe('Environment variables', function() {
   });
   describe('Google sheets items url', function() {
     return it('should be defined', function() {
-      return assert.isDefined(a.gsheet_items);
+      return assert.isDefined(a.gsheet_items_url);
     });
   });
   return describe('Google sheets persons url', function() {
     return it('should be defined', function() {
-      return assert.isDefined(a.gsheet_persons);
+      return assert.isDefined(a.gsheet_persons_url);
     });
   });
 });
 
-describe('Gsheets json', function() {
-  describe('#jsonItems', function() {
-    return it('should get a valid json object', function(done) {
-      return a.getItemsJson(function() {
-        assert.isObject(a.jsonItemsCache);
-        assert.isArray(a.jsonItemsCache.data);
-        return done();
-      });
-    });
-  });
-  describe('#jsonPersons', function() {
-    return it('should get a valid json object', function(done) {
-      return a.getPersonsJson(function() {
-        assert.isObject(a.jsonPersonsCache);
-        assert.isArray(a.jsonPersonsCache.data);
-        return done();
-      });
-    });
-  });
-  return describe('#jsonItems per person', function() {
-    return it('should get a valid json object', function(done) {
-      var testPerson;
-      testPerson = a.jsonPersonsCache.data[0].Nombre;
-      return a.getItemsPerPersonJson(testPerson, function() {
-        assert.isObject(a.jsonPersonsCache);
-        assert.isArray(a.jsonPersonsCache.data);
-        return done();
-      });
-    });
+describe('get Gsheets json promise v2', function() {
+  return it('should be fulfilled', function() {
+    return assert.isFulfilled(a.getGSheetJsonPromise2(a.gsheet_persons_id, 0, 'SELECT A,B,C,D'));
   });
 });
